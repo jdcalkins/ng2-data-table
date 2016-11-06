@@ -1,6 +1,7 @@
 // import {describe, it, expect, beforeEach} from "@angular/core/testing";
 import {SimpleChange} from "@angular/core";
 import {DataTable} from "./DataTable";
+import {RowSelector} from "./RowSelector";
 
 describe("DataTable directive tests", ()=> {
     let datatable: DataTable;
@@ -183,19 +184,26 @@ describe("DataTable directive tests", ()=> {
     describe("row selecting", ()=> {
 
         it("selected entities should only contain entities that are selected", () => {
-            let entities = [
-                {
-                    id: 2,
-                    name: 'Czech'
-                },
-                {
-                    id: 3,
-                    name: 'Hungary'
-                }
-            ];
-            datatable.addRemoveSelectedEntity(entities[0]);
-            datatable.addRemoveSelectedEntity(entities[1]);
-            datatable.addRemoveSelectedEntity(entities[0]);
+            let entities = datatable.inputData;
+            datatable.ngDoCheck();
+
+            let rowselectors = new Array<RowSelector>();
+            entities.forEach(x => {
+                let rowSelector = new RowSelector();
+                rowSelector.entity = x;
+                rowselectors.push(rowSelector);
+            });
+
+            // Fake the interaction between the datatable directive
+            // and rowselector component that would normally be
+            // provided through angular2 template.
+            rowselectors[0].onChange();
+            datatable.addRemoveSelectedEntity(rowselectors[0].entity);
+            rowselectors[1].onChange();
+            datatable.addRemoveSelectedEntity(rowselectors[1].entity);
+            rowselectors[0].onChange();
+            datatable.addRemoveSelectedEntity(rowselectors[0].entity);
+
             expect(datatable.selectedEntities.length).toEqual(1);
         });
 

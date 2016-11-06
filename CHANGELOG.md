@@ -1,5 +1,15 @@
 #Changelog
 
+## 0.6.0 (2016-11-06)
+
+Breaking changes:
+
+    - mfRowSelector component removed [selectedEntities]. 
+
+Bugfixes:
+
+    - removing data item from inputData also removes data item from selectedEntities  
+
 ## 0.5.11 (2016-10-26)
 
 Bugfixes:

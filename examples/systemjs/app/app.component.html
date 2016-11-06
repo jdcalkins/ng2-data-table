@@ -35,7 +35,7 @@
                     </thead>
                     <tbody>
                         <tr *ngFor="let item of mf.data; let ndx = index">
-                            <td><mfRowSelector [checkboxId]="ndx" [selectedEntities]="mf.selectedEntities" [entity]="item" (selectEntity)="mf.addRemoveSelectedEntity($event)"></mfRowSelector></td>
+                            <td><mfRowSelector [checkboxId]="ndx" [entity]="item" (selectEntity)="mf.addRemoveSelectedEntity($event)"></mfRowSelector></td>
                             <td>{{item.name}}</td>
                             <td>{{item.email}}</td>
                             <td class="text-right">{{item.age}}</td>

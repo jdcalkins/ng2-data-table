@@ -28,6 +28,7 @@ export class AppComponent implements OnInit {
 
     public setSelectedEntities($event) {
         this.selectedEntities = $event;
+        console.dir(this.selectedEntities);
     }
 
     private toInt(num: string) {

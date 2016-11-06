@@ -67,10 +67,7 @@ app.component.html
     </thead>
     <tbody>
       <tr *ngFor="let item of mf.data; let ndx = index">
-        <td>
-          <mfRowSelector [selectedEntities]="mf.selectedEntities" [entity]="item"
-          [checkboxId] = "ndx" (selectEntity)="mf.addRemoveSelectedEntity($event)"></mfRowSelector>
-        </td>
+        <td><mfRowSelector [entity]="item" [checkboxId] = "ndx" (selectEntity)="mf.addRemoveSelectedEntity($event)"></mfRowSelector></td>
         <td>{{item.name}}</td>
         <td>{{item.email}}</td>
         <td class="text-right">{{item.age}}</td>
@@ -117,5 +114,6 @@ Displays a checkbox for the row. When checked, the entity in the row is added to
  - selector: `mfRowSelector`
  - inputs:
    - `entity: any` - the data entity in the current row
-   - `selectedEntities: any[]` - the array of data entities currently selected in the datatable
    - `checkboxId: string` - optionally specify the id used by the checkbox's "id" attribute and the checkbox label's "for" attribute
+ - outputs:
+   - `selectEntity: any` - the data entity selected/deselected in this row

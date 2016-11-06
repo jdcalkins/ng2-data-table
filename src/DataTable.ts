@@ -43,26 +43,27 @@ export class DataTable implements OnInit, DoCheck, OnChanges {
     public onPageChange = new EventEmitter<PageEvent>();
 
     public addRemoveSelectedEntity($event) {
-        let index = this.selectedEntities.indexOf($event);
-        if (index > -1) {
-            this.selectedEntities.splice(index, 1);
-        }
-        else {
-            this.selectedEntities.push($event);
-        }
+        this.updateSelectedEntities();
         this.selectedEntitiesEmitter.emit(this.selectedEntities);
     }
 
+    public updateSelectedEntities() {
+        this.selectedEntities = this.inputData.filter(x => x.__isSelected__);
+    }
+
     public selectAllRows() {
-        this.selectedEntities = [];
-        this.inputData.forEach((data, i) => {
-            this.selectedEntities.push(data);
+        this.inputData.forEach((data) => {
+            data.__isSelected__ = true;
         })
+        this.updateSelectedEntities();
         this.selectedEntitiesEmitter.emit(this.selectedEntities);
     }
 
     public deselectAllRows() {
-        this.selectedEntities = [];
+        this.inputData.forEach((data) => {
+            data.__isSelected__ = false;
+        })
+        this.updateSelectedEntities();
         this.selectedEntitiesEmitter.emit(this.selectedEntities);
     }
 
@@ -109,9 +110,18 @@ export class DataTable implements OnInit, DoCheck, OnChanges {
         }
     }
 
+    private addIsSelectedProperty() {
+        this.inputData.forEach(x => {
+            if (x.__isSelected__ == null) {
+                Object.defineProperty(x, "__isSelected__", { value: false, writable: true })
+            }
+        });
+    }
+
     public ngDoCheck(): any {
         if (this.mustRecalculateData
             || this.isInputDataChanged() ) {
+            this.addIsSelectedProperty();
             this.inputData = this.inputData || [];
             this.onPageChange.emit({
                 activePage: this.activePage,

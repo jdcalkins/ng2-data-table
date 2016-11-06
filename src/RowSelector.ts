@@ -3,15 +3,14 @@ import {Component, Input, Output, EventEmitter, OnInit, DoCheck} from "@angular/
 @Component({
     selector: "mfRowSelector",
     template: `
-        <input type="checkbox" id="{{checkboxId}}" [checked]="isChecked" (change)="onChange($event)" />
+        <input type="checkbox" id="{{checkboxId}}" [checked]="isChecked" (change)="onChange()" />
         <label attr.for="{{checkboxId}}"></label>
         `
 })
 export class RowSelector implements OnInit, DoCheck {
     @Output("selectEntity") rowSelected = new EventEmitter();
-    @Input("entity") private rowEntity: any = Object;
-    @Input("selectedEntities") private selectedEntities: any[];
-    @Input("checkboxId") checkboxId: string;
+    @Input() entity: any = Object;
+    @Input() checkboxId: string;
 
     isChecked: boolean = false;
 
@@ -27,14 +26,11 @@ export class RowSelector implements OnInit, DoCheck {
     }
 
     private getIsChecked() {
-        if (this.selectedEntities != null) {
-            let index = this.selectedEntities.indexOf(this.rowEntity);
-            this.isChecked = index > -1;
-        }
+        this.isChecked = this.entity.__isSelected__;
     }
 
-    onChange($event) {
-        this.isChecked = !this.isChecked;
-        this.rowSelected.emit(this.rowEntity);
+    onChange() {
+        this.entity.__isSelected__ = !this.entity.__isSelected__;
+        this.rowSelected.emit(this.entity);
     }
 }
