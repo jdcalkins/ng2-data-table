@@ -9,7 +9,7 @@ import {DataTable} from "./DataTable";
         `
 })
 export class RowSelectorHead {
-    @Input("mfTable") private dataTable: DataTable;
+    @Input("mfTable") dataTable: DataTable;
     @Input("checkboxId") checkboxId: string;
 
     isChecked: boolean = false;
