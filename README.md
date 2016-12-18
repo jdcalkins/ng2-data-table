@@ -49,7 +49,7 @@ app.component.html
     <thead>
     <tr>
         <th>
-            <mfRowSelectorHead [mfTable]="mf"></mfRowSelectorHead>
+            <mfRowSelectorHead #mfRowSelectorHead [mfTable]="mf"></mfRowSelectorHead>
         </th>
         <th style="width: 20%">
             <mfDefaultSorter by="name">Name</mfDefaultSorter>
@@ -67,7 +67,7 @@ app.component.html
     </thead>
     <tbody>
       <tr *ngFor="let item of mf.data; let ndx = index">
-        <td><mfRowSelector [entity]="item" [checkboxId] = "ndx" (selectEntity)="mf.addRemoveSelectedEntity($event)"></mfRowSelector></td>
+        <td><mfRowSelector [entity]="item" [checkboxId] = "ndx" (selectEntity)="mf.addRemoveSelectedEntity($event); mfRowSelectorHead.isChecked = false;"></mfRowSelector></td>
         <td>{{item.name}}</td>
         <td>{{item.email}}</td>
         <td class="text-right">{{item.age}}</td>
