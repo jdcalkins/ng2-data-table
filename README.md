@@ -1,4 +1,4 @@
-# Table component with sorting and pagination for Angular2
+# Table component with sorting, pagination, and row select for Angular2
 
 ## Demo
 
@@ -114,6 +114,8 @@ Displays buttons for changing current page and number of displayed rows using bo
 Displays a header checkbox for the table. Clicking the checkbox toggles select/deselect of all the items in the data table.
 
  - selector: `mfRowSelectorHead`
+ - inputs:
+   - `checkboxId: string` - optionally specify the id used by the header checkbox's "id" attribute and the checkbox label's "for" attribute
 
 ### `mfRowSelector` component
 Displays a checkbox for the row. When checked, the entity in the row is added to the mfDataTable's mfSelectedEntities. The mfSelectedEntities then emits the array of entities currently checked in the mfDataTable.
