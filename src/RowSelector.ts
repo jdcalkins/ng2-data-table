@@ -1,4 +1,5 @@
 import {Component, Input, Output, EventEmitter, OnInit, DoCheck} from "@angular/core";
+import {DataTable} from "./DataTable";
 
 @Component({
     selector: "mfRowSelector",
@@ -8,13 +9,12 @@ import {Component, Input, Output, EventEmitter, OnInit, DoCheck} from "@angular/
         `
 })
 export class RowSelector implements OnInit, DoCheck {
-    @Output("selectEntity") rowSelected = new EventEmitter();
     @Input() entity: any = Object;
     @Input() checkboxId: string;
 
     isChecked: boolean = false;
 
-    public constructor() {
+    public constructor(private mfTable: DataTable) {
     }
 
     public ngOnInit() {
@@ -31,6 +31,6 @@ export class RowSelector implements OnInit, DoCheck {
 
     onChange() {
         this.entity.__isSelected__ = !this.entity.__isSelected__;
-        this.rowSelected.emit(this.entity);
+        this.mfTable.addRemoveSelectedEntity(this.entity);
     }
 }

@@ -9,21 +9,30 @@ import {DataTable} from "./DataTable";
         `
 })
 export class RowSelectorHead {
-    @Input("mfTable") dataTable: DataTable;
     @Input("checkboxId") checkboxId: string;
 
     isChecked: boolean = false;
 
-    public constructor() {
+    public constructor(private mfTable: DataTable) {
+        mfTable.onDataChange.subscribe(() => {
+            // always uncheck the header checkbox if the
+            // data has changed in the table
+            this.isChecked = false;
+        });
+        mfTable.onSelectChange.subscribe(() => {
+            // always uncheck when an item checkbox
+            // was interacted with
+            this.isChecked = false;
+        });
     }
 
     onChange($event) {
         this.isChecked = !this.isChecked;
         if (this.isChecked) {
-            this.dataTable.selectAllRows();
+            this.mfTable.selectAllRows();
         }
         else {
-            this.dataTable.deselectAllRows();
+            this.mfTable.deselectAllRows();
         }
     }
 }
