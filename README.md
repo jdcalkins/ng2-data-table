@@ -49,7 +49,7 @@ app.component.html
     <thead>
     <tr>
         <th>
-            <mfRowSelectorHead #mfRowSelectorHead [mfTable]="mf"></mfRowSelectorHead>
+            <mfRowSelectorHead></mfRowSelectorHead>
         </th>
         <th style="width: 20%">
             <mfDefaultSorter by="name">Name</mfDefaultSorter>
@@ -67,7 +67,7 @@ app.component.html
     </thead>
     <tbody>
       <tr *ngFor="let item of mf.data; let ndx = index">
-        <td><mfRowSelector [entity]="item" [checkboxId] = "ndx" (selectEntity)="mf.addRemoveSelectedEntity($event); mfRowSelectorHead.isChecked = false;"></mfRowSelector></td>
+        <td><mfRowSelector [entity]="item" [checkboxId]="ndx"></mfRowSelector></td>
         <td>{{item.name}}</td>
         <td>{{item.email}}</td>
         <td class="text-right">{{item.age}}</td>
@@ -94,6 +94,8 @@ app.component.html
    - `mfData: any[]` - array of data to display on table
    - `mfRowsOnPage: number` - number of rows should be displayed on page (default: 1000)
    - `mfActivePage: number` - page number should be displayed on init (default: 1)
+ - outputs
+   - `mfSelectedEntities: any[]` - array of data in the table that is currently selected with checkboxes
 
 ### `mfDefaultSorter` component
 
@@ -108,6 +110,11 @@ Displays buttons for changing current page and number of displayed rows using bo
  - inputs
    - `rowsOnPageSet: number` - specify values for buttons to change number of displayed rows
 
+### `mfRowSelectorHead` component
+Displays a header checkbox for the table. Clicking the checkbox toggles select/deselect of all the items in the data table.
+
+ - selector: `mfRowSelectorHead`
+
 ### `mfRowSelector` component
 Displays a checkbox for the row. When checked, the entity in the row is added to the mfDataTable's mfSelectedEntities. The mfSelectedEntities then emits the array of entities currently checked in the mfDataTable.
 
@@ -115,5 +122,3 @@ Displays a checkbox for the row. When checked, the entity in the row is added to
  - inputs:
    - `entity: any` - the data entity in the current row
    - `checkboxId: string` - optionally specify the id used by the checkbox's "id" attribute and the checkbox label's "for" attribute
- - outputs:
-   - `selectEntity: any` - the data entity selected/deselected in this row
