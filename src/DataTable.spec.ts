@@ -189,7 +189,7 @@ describe("DataTable directive tests", ()=> {
 
             let rowselectors = new Array<RowSelector>();
             entities.forEach(x => {
-                let rowSelector = new RowSelector();
+                let rowSelector = new RowSelector(datatable);
                 rowSelector.entity = x;
                 rowselectors.push(rowSelector);
             });

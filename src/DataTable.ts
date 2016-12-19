@@ -16,6 +16,10 @@ export interface DataEvent {
     length: number;
 }
 
+export interface SelectEvent {
+
+}
+
 @Directive({
     selector: 'table[mfData]',
     exportAs: 'mfDataTable'
@@ -41,8 +45,10 @@ export class DataTable implements OnInit, DoCheck, OnChanges {
     public onDataChange = new EventEmitter<DataEvent>();
     public onSortChange = new EventEmitter<SortEvent>();
     public onPageChange = new EventEmitter<PageEvent>();
+    public onSelectChange = new EventEmitter<SelectEvent>();
 
     public addRemoveSelectedEntity($event) {
+        this.onSelectChange.emit({});
         this.updateSelectedEntities();
         this.selectedEntitiesEmitter.emit(this.selectedEntities);
     }
@@ -127,6 +133,9 @@ export class DataTable implements OnInit, DoCheck, OnChanges {
                 activePage: this.activePage,
                 rowsOnPage: this.rowsOnPage,
                 dataLength: this.inputData.length
+            });
+            this.onDataChange.emit({
+                length: this.inputData.length
             });
             this.fillData();
             this.mustRecalculateData = false;
