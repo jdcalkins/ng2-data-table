@@ -1,5 +1,17 @@
 #Changelog
 
+## 0.7.0 (2016-12-19)
+
+Breaking changes:
+
+    - mfRowSelectorHead no longer has an input [mfTable]
+    - mfRowSelector no longer has an output (selectEntity) 
+
+Bugfixes:
+
+    - header checkbox deselects when an item is added to data table or an item is
+      unchecked in the data table
+
 ## 0.6.0 (2016-11-06)
 
 Breaking changes:
