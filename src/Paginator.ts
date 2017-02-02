@@ -1,5 +1,5 @@
-import {Component, Input, SimpleChange, OnChanges, Optional} from "@angular/core";
-import {DataTable, PageEvent} from "./DataTable";
+import { Component, Input, SimpleChange, OnChanges, Optional } from "@angular/core";
+import { DataTable, PageEvent } from "./DataTable";
 
 @Component({
     selector: "mfPaginator",

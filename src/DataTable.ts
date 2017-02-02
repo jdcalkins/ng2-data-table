@@ -1,4 +1,4 @@
-import {Directive, Input, Output, EventEmitter, SimpleChange, DoCheck, OnInit, OnChanges} from "@angular/core";
+import { Directive, Input, Output, EventEmitter, SimpleChange, DoCheck, OnInit, OnChanges } from "@angular/core";
 import * as _ from "lodash";
 
 export interface SortEvent {
@@ -47,7 +47,7 @@ export class DataTable implements OnInit, DoCheck, OnChanges {
     public onPageChange = new EventEmitter<PageEvent>();
     public onSelectChange = new EventEmitter<SelectEvent>();
 
-    public addRemoveSelectedEntity($event) {
+    public addRemoveSelectedEntity($event: any) {
         this.onSelectChange.emit({});
         this.updateSelectedEntities();
         this.selectedEntitiesEmitter.emit(this.selectedEntities);

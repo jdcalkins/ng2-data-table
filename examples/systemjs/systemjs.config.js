@@ -21,7 +21,7 @@
 
             // other libraries
             'rxjs': 'npm:rxjs',
-            'ng2-data-table': 'npm:ng2-data-table',
+            'ng2-data-table': 'npm:ng2-data-table/bundles/angular2-data-table.umd.min.js',
             'lodash': 'npm:lodash/lodash.js'
         },
         // packages tells the System loader how to load when no filename and/or no extension
@@ -31,7 +31,6 @@
                 defaultExtension: 'js'
             },
             rxjs: {defaultExtension: 'js'},
-            'ng2-data-table': {defaultExtension: 'js'}
         }
     });
 })(this);

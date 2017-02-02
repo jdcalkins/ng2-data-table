@@ -1,5 +1,5 @@
-import {Component, Input, OnChanges} from "@angular/core";
-import {DataTable} from "./DataTable";
+import { Component, Input, OnChanges } from "@angular/core";
+import { DataTable } from "./DataTable";
 import * as _ from "lodash";
 
 @Component({

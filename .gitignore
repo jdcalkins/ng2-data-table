@@ -2,9 +2,7 @@ npm-debug.log
 node_modules
 .idea
 *.iml
-/lib
-/src/typings/
 /coverage/
 .DS_Store
-/aot
 .vscode
+*.ngsummary.json

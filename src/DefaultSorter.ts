@@ -1,5 +1,5 @@
-import {Component, Input} from "@angular/core";
-import {DataTable, SortEvent} from "./DataTable";
+import { Component, Input } from "@angular/core";
+import { DataTable, SortEvent } from "./DataTable";
 
 @Component({
     selector: "mfDefaultSorter",

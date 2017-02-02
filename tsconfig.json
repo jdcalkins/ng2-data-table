@@ -1,0 +1,38 @@
+{
+    "compilerOptions": {
+        "baseUrl": ".",
+        "emitDecoratorMetadata": true,
+        "experimentalDecorators": true,
+        "inlineSources": true,
+        "target": "es5",
+        "module": "es2015",
+        "moduleResolution": "node",
+        "noImplicitAny": true,
+        "removeComments": true,
+        "rootDir": ".",
+        "skipLibCheck": true,
+        "sourceMap": true,
+        "strictNullChecks": true,
+        "stripInternal": true,
+        "outDir": "dist",
+        "declaration": true,
+        "typeRoots": [
+            "../node_modules/@types"
+        ],
+        "lib": [
+            "dom",
+            "es2015"
+        ],
+        "paths": {
+            "@angular/core": ["node_modules/@angular/core"],
+            "rxjs/*": ["node_modules/rxjs/*"],
+            "lodash/*": ["node_modules/lodash/*"]
+        }
+    },
+    "files": [
+        "index.ts"
+    ],
+    "angularCompilerOptions": {
+        "strictMetadataEmit": true
+    }
+}

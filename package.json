@@ -1,17 +1,18 @@
 {
   "name": "ng2-data-table",
-  "version": "0.7.0",
-  "description": "DataTable component for Angular2 framework",
-  "main": "datatable",
+  "version": "1.0.0",
+  "description": "Data Table component for Angular2 framework",
   "scripts": {
-    "prebuild": "rm -rf lib",
-    "build": "ngc -p src",
     "start": "http-server -c-1 -o -p 8875 .",
     "pretest": "npm run build",
     "test": "karma start karma.conf.js",
     "posttest": "node_modules/.bin/remap-istanbul -i coverage/coverage-final.json -o coverage -t html",
     "coverage-remap": "remap-istanbul -i coverage/coverage-final.json -o coverage/coverage-remapped.lcov -t lcovonly",
-    "coverage": "http-server -c-1 -o -p 9875 ./coverage"
+    "coverage": "http-server -c-1 -o -p 9875 ./coverage",
+    "transpile": "node --max-old-space-size=8192 ./node_modules/.bin/ngc -p ./tsconfig.json",
+    "package": "rollup -c",
+    "minify": "uglifyjs dist/bundles/angular2-data-table.umd.js --screw-ie8 --compress --mangle --comments --output dist/bundles/angular2-data-table.umd.min.js",
+    "build": "npm run transpile && npm run package && npm run minify"
   },
   "repository": {
     "type": "git",
@@ -27,8 +28,8 @@
     "pagination",
     "sort",
     "sorting",
-    "row-select",
-    "multi-row-select"
+    "row select",
+    "multi row select"
   ],
   "author": "jasondcalkins@gmail.com",
   "license": "MIT",
@@ -37,12 +38,12 @@
   },
   "homepage": "https://github.com/jdcalkins/ng2-data-table#readme",
   "devDependencies": {
-    "@angular/common": "^2.1.0",
-    "@angular/compiler": "^2.1.0",
-    "@angular/compiler-cli": "^2.1.0",
-    "@angular/core": "^2.1.0",
-    "@angular/platform-browser": "^2.1.0",
-    "@angular/platform-browser-dynamic": "^2.1.0",
+    "@angular/common": "^2.4.5",
+    "@angular/compiler": "^2.4.5",
+    "@angular/compiler-cli": "^2.4.5",
+    "@angular/core": "^2.4.5",
+    "@angular/platform-browser": "^2.4.5",
+    "@angular/platform-browser-dynamic": "^2.4.5",
     "@types/jasmine": "^2.5.35",
     "@types/lodash": "^4.14.37",
     "core-js": "^2.4.1",
@@ -56,14 +57,16 @@
     "lodash": "^4.0.0",
     "phantomjs-prebuilt": "^2.1.13",
     "remap-istanbul": "^0.6.3",
-    "rxjs": "^5.0.0-beta.12",
+    "rollup": "^0.41.4",
+    "rxjs": "^5.0.3",
     "systemjs": "^0.19.27",
-    "typescript": "^2.0.3",
-    "zone.js": "^0.6.25"
+    "typescript": "^2.1.5",
+    "uglify-js": "^2.7.5",
+    "zone.js": "^0.7.2"
   },
   "peerDependencies": {
-    "@angular/core": "^2.0.0",
+    "@angular/core": "^2.4.5",
     "lodash": "^4.0.0",
-    "rxjs": "^5.0.0-beta.12"
+    "rxjs": "^5.0.3"
   }
 }

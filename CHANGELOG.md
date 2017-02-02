@@ -1,5 +1,15 @@
 #Changelog
 
+## 1.0.0 (2017-02-02)
+
+Breaking changes:
+
+    - the package is now distibuted as a bundle. For JIT compile and SystemJS use, 
+      refer to the Readme for example how to include the module. Also check the
+      examples/systemjs/systemjs.config.js for an example on how to include
+      the package. For AOT compile, add the package to your package.json and 
+      building should 'just work'.
+
 ## 0.7.0 (2016-12-19)
 
 Breaking changes:

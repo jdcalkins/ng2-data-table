@@ -26,7 +26,7 @@ export class AppComponent implements OnInit {
             });
     }
 
-    public setSelectedEntities($event) {
+    public setSelectedEntities($event: any) {
         this.selectedEntities = $event;
         console.dir(this.selectedEntities);
     }

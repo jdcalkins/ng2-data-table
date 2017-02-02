@@ -26,7 +26,7 @@ export class RowSelectorHead {
         });
     }
 
-    onChange($event) {
+    onChange($event: any) {
         this.isChecked = !this.isChecked;
         if (this.isChecked) {
             this.mfTable.selectAllRows();
