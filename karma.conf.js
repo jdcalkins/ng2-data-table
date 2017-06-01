@@ -1,8 +1,8 @@
 module.exports = function (config) {
 
-    var appBase = 'lib/';       // transpiled app JS and map files
-    var appSrcBase = 'src/';       // app source TS files
-    var appAssets = '/base/lib/'; // component assets fetched by Angular's compiler
+    var appBase = './jit/';       // transpiled app JS and map files
+    var appSrcBase = './src/';       // app source TS files
+    var appAssets = './base/src/'; // component assets fetched by Angular's compiler
 
     config.set({
 
@@ -18,14 +18,14 @@ module.exports = function (config) {
             'karma-phantomjs-launcher'
         ],
 
-        customLaunchers: {
-            // From the CLI. Not used here but interesting
-            // chrome setup for travis CI using chromium
-            Chrome_travis_ci: {
-                base: 'Chrome',
-                flags: ['--no-sandbox']
-            }
-        },
+        // customLaunchers: {
+        //     // From the CLI. Not used here but interesting
+        //     // chrome setup for travis CI using chromium
+        //     Chrome_travis_ci: {
+        //         base: 'Chrome',
+        //         flags: ['--no-sandbox']
+        //     }
+        // },
 
         files: [
             // System.js for module loading
@@ -81,7 +81,6 @@ module.exports = function (config) {
                 included: false,
                 watched: false
             },
-            'karma-test-shim.js',
 
             // transpiled application & spec code paths loaded via module imports
             {
@@ -92,16 +91,16 @@ module.exports = function (config) {
 
             // asset (HTML & CSS) paths loaded via Angular's component compiler
             // (these paths need to be rewritten, see proxies section)
-            {
-                pattern: appBase + '**/*.html',
-                included: false,
-                watched: true
-            },
-            {
-                pattern: appBase + '**/*.css',
-                included: false,
-                watched: true
-            },
+            // {
+            //     pattern: appBase + '**/*.html',
+            //     included: false,
+            //     watched: true
+            // },
+            // {
+            //     pattern: appBase + '**/*.css',
+            //     included: false,
+            //     watched: true
+            // },
 
             // paths for debugging with source maps in dev tools
             {
@@ -113,13 +112,15 @@ module.exports = function (config) {
                 pattern: appBase + '**/*.js.map',
                 included: false,
                 watched: false
-            }
+            },
+            'karma-test-shim.js'
+            
         ],
 
         // proxied base paths for loading assets
         proxies: {
             // required for component assets fetched by Angular's compiler
-            "/lib/": appAssets
+            "/src/": appAssets
         },
 
         exclude: [],
@@ -151,8 +152,11 @@ module.exports = function (config) {
 
         autoWatch: true,
 
-        browsers: ['Chrome'],
+        browsers: [
+            'Chrome',
+            'PhantomJS'
+            ],
 
-        singleRun: true
+        singleRun: false
     })
 };

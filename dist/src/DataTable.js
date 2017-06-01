@@ -112,11 +112,18 @@ var DataTable = (function () {
         return isDataLengthChanged;
     };
     DataTable.prototype.fillData = function () {
+        var _this = this;
         this.activePage = this.activePage;
         this.rowsOnPage = this.rowsOnPage;
         var offset = (this.activePage - 1) * this.rowsOnPage;
         var data = this.inputData;
-        data = _.orderBy(data, [this.sortBy], [this.sortOrder]);
+        data = _.orderBy(data, function (row) {
+            var value = row[_this.sortBy];
+            if (value && typeof value === 'string' || value instanceof String) {
+                return value.toLowerCase();
+            }
+            return value;
+        }, [this.sortOrder]);
         data = _.slice(data, offset, offset + this.rowsOnPage);
         this.data = data;
     };

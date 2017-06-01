@@ -1,9 +1,9 @@
 // Tun on full stack traces in errors to help debugging
-Error.stackTraceLimit = Infinity;
+Error.stackTraceLimit = 0; // INFINITY
 
 jasmine.DEFAULT_TIMEOUT_INTERVAL = 1000;
 
-var builtPath = '/base/lib/';
+var builtPath = '/base/jit/';
 
 // // Cancel Karma's synchronous start,
 // // we will call `__karma__.start()` later, once all the specs are loaded.
