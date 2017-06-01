@@ -1,5 +1,15 @@
 #Changelog
 
+## 1.0.1 (2017-05-31)
+
+Bugfixes:
+    
+    - column sort by string is now case insesitive
+    
+Issues:
+    
+    - unit test does not work
+
 ## 1.0.0 (2017-02-02)
 
 Breaking changes:
