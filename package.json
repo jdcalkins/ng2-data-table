@@ -12,7 +12,8 @@
     "transpile": "node --max-old-space-size=8192 ./node_modules/.bin/ngc -p ./tsconfig.json",
     "package": "rollup -c",
     "minify": "uglifyjs dist/bundles/angular2-data-table.umd.js --screw-ie8 --compress --mangle --comments --output dist/bundles/angular2-data-table.umd.min.js",
-    "build": "npm run transpile && npm run package && npm run minify"
+    "build": "rm -rf ./dist && npm run transpile && npm run package && npm run minify && npm run copy-dist-support",
+    "copy-dist-support": "cp LICENSE ./dist/ && cp README.md ./dist/ && cp package-dist.json ./dist/ && mv ./dist/package-dist.json ./dist/package.json"
   },
   "repository": {
     "type": "git",
