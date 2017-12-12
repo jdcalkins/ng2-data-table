@@ -1,5 +1,6 @@
 import { Component, Input, SimpleChange, OnChanges, Optional } from "@angular/core";
 import { DataTable, PageEvent } from "./DataTable";
+import { StateManager } from "./StateManager";
 
 @Component({
     selector: "mfPaginator",
@@ -8,7 +9,7 @@ import { DataTable, PageEvent } from "./DataTable";
 export class Paginator implements OnChanges {
 
     @Input("mfTable") inputMfTable: DataTable;
-
+    @Input("saveRowsOnPage") saveRowsOnPage: boolean;
     private mfTable: DataTable;
 
     public activePage: number;
@@ -16,8 +17,10 @@ export class Paginator implements OnChanges {
     public dataLength: number = 0;
     public lastPage: number;
 
-    public constructor(@Optional() private injectMfTable: DataTable) {
-    }
+    public constructor(
+        @Optional() private injectMfTable: DataTable,
+        private stateManager: StateManager
+    ) { }
 
     public ngOnChanges(changes: {[key: string]: SimpleChange}): any {
         this.mfTable = this.inputMfTable || this.injectMfTable;
@@ -31,6 +34,9 @@ export class Paginator implements OnChanges {
 
     public setRowsOnPage(rowsOnPage: number): void {
         this.mfTable.setPage(this.activePage, rowsOnPage);
+        if (this.saveRowsOnPage) {
+            this.stateManager.setPagination(rowsOnPage.toString());
+        }
     }
 
     private onPageChangeSubscriber = (event: PageEvent)=> {

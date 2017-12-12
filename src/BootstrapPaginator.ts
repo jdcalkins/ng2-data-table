@@ -52,6 +52,7 @@ import * as _ from "lodash";
 export class BootstrapPaginator implements OnChanges {
     @Input("rowsOnPageSet") rowsOnPageSet = [];
     @Input("mfTable") mfTable: DataTable;
+    @Input('savePagination') savePagination: boolean; 
 
     minRowsOnPage = 0;
 

@@ -1,5 +1,6 @@
 import { Directive, Input, Output, EventEmitter, SimpleChange, DoCheck, OnInit, OnChanges } from "@angular/core";
 import * as _ from "lodash";
+import { StateManager } from "./StateManager";
 
 export interface SortEvent {
     sortBy: string;
@@ -33,6 +34,7 @@ export class DataTable implements OnInit, DoCheck, OnChanges {
     private sortOrder = "asc";
 
     @Input("mfRowsOnPage") public rowsOnPage = 1000;
+    @Input("mfSaveRowsOnPage") public saveRowsOnPage = false;
     @Input("mfActivePage") public activePage = 1;
 
     @Output("mfSelectedEntities") public selectedEntitiesEmitter = new EventEmitter();
@@ -46,6 +48,8 @@ export class DataTable implements OnInit, DoCheck, OnChanges {
     public onSortChange = new EventEmitter<SortEvent>();
     public onPageChange = new EventEmitter<PageEvent>();
     public onSelectChange = new EventEmitter<SelectEvent>();
+
+    constructor(private stateManager: StateManager) { }
 
     public addRemoveSelectedEntity($event: any) {
         this.onSelectChange.emit({});
@@ -107,6 +111,9 @@ export class DataTable implements OnInit, DoCheck, OnChanges {
 
     public ngOnInit() {
         this.inputDataLength = this.inputData.length;
+        if (this.saveRowsOnPage) {
+            this.rowsOnPage = this.stateManager.getPagination();
+        }
     }
 
     public ngOnChanges(changes: { [key: string]: SimpleChange }): any {
