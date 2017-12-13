@@ -9,7 +9,8 @@ import { StateManager } from "./StateManager";
 export class Paginator implements OnChanges {
 
     @Input("mfTable") inputMfTable: DataTable;
-    @Input("saveRowsOnPage") saveRowsOnPage: boolean;
+    @Input("savePagination") saveRowsOnPage: boolean;
+
     private mfTable: DataTable;
 
     public activePage: number;
@@ -33,7 +34,6 @@ export class Paginator implements OnChanges {
     }
 
     public setRowsOnPage(rowsOnPage: number): void {
-        debugger;
         this.mfTable.setPage(this.activePage, rowsOnPage);
         if (this.saveRowsOnPage) {
             this.stateManager.setPagination(rowsOnPage.toString());

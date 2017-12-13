@@ -963,6 +963,8 @@ export class View_BootstrapPaginator0 extends import2.AppView<import0.BootstrapP
   detectChangesInternal(throwOnChange:boolean):void {
     const currVal_1_0_0:any = this.context.mfTable;
     this._Paginator_1_3.check_inputMfTable(currVal_1_0_0,throwOnChange,false);
+    const currVal_1_0_1:any = this.context.savePagination;
+    this._Paginator_1_3.check_saveRowsOnPage(currVal_1_0_1,throwOnChange,false);
     this._Paginator_1_3.ngDoCheck(this,this._el_1,throwOnChange);
     const currVal_3_0_0:any = (this._Paginator_1_3.context.dataLength > this._Paginator_1_3.context.rowsOnPage);
     this._NgIf_3_6.check_ngIf(currVal_3_0_0,throwOnChange,false);

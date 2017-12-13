@@ -5,7 +5,7 @@ import * as _ from "lodash";
 @Component({
     selector: "mfBootstrapPaginator",
     template: `
-    <mfPaginator #p [mfTable]="mfTable">
+    <mfPaginator #p [mfTable]="mfTable" [savePagination]="savePagination">
         <nav class="pagination" *ngIf="p.dataLength > p.rowsOnPage">
             <li [class.disabled]="p.activePage <= 1" (click)="p.setPage(1)">
                 <a style="cursor: pointer">&laquo;</a>

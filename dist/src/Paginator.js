@@ -35,7 +35,6 @@ var Paginator = (function () {
         this.mfTable.setPage(pageNumber, this.rowsOnPage);
     };
     Paginator.prototype.setRowsOnPage = function (rowsOnPage) {
-        debugger;
         this.mfTable.setPage(this.activePage, rowsOnPage);
         if (this.saveRowsOnPage) {
             this.stateManager.setPagination(rowsOnPage.toString());
@@ -46,7 +45,7 @@ var Paginator = (function () {
         __metadata("design:type", DataTable)
     ], Paginator.prototype, "inputMfTable", void 0);
     __decorate([
-        Input("saveRowsOnPage"),
+        Input("savePagination"),
         __metadata("design:type", Boolean)
     ], Paginator.prototype, "saveRowsOnPage", void 0);
     Paginator = __decorate([
