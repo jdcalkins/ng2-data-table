@@ -48,7 +48,7 @@ app.component.ts
 
 app.component.html
 ```html
-<table [mfData]="data" #mf="mfDataTable" [mfRowsOnPage]="5" (mfSelectedEntities)="setSelectedEntities($event)">
+<table [mfData]="data" #mf="mfDataTable" [mfRowsOnPage]="5" [mfSaveRowsOnPage]="true" (mfSelectedEntities)="setSelectedEntities($event)">
     <thead>
         <tr>
             <th>
@@ -97,6 +97,7 @@ app.component.html
    - `mfData: any[]` - array of data to display on table
    - `mfRowsOnPage: number` - number of rows should be displayed on page (default: 1000)
    - `mfActivePage: number` - page number should be displayed on init (default: 1)
+   - `mfSaveRowsOnPage: boolean` - pagination should be saved in local storage (default: false)
  - outputs
    - `mfSelectedEntities: any[]` - array of data in the table that is currently selected with checkboxes
 
@@ -127,3 +128,6 @@ Displays a checkbox for the row. When checked, the entity in the row is added to
  - inputs:
    - `entity: any` - the data entity in the current row
    - `checkboxId: string` - optionally specify the id used by the checkbox's "id" attribute and the checkbox label's "for" attribute
+
+### Saving State
+The Pagination preference is stored in the localStorage key `ng2-data-table-pagination`. You may want to remove this key in a logout handler.

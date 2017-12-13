@@ -28,10 +28,6 @@ var BootstrapPaginator = (function () {
         Input("mfTable"),
         __metadata("design:type", DataTable)
     ], BootstrapPaginator.prototype, "mfTable", void 0);
-    __decorate([
-        Input('savePagination'),
-        __metadata("design:type", Boolean)
-    ], BootstrapPaginator.prototype, "savePagination", void 0);
     BootstrapPaginator = __decorate([
         Component({
             selector: "mfBootstrapPaginator",

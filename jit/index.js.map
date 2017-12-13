@@ -1,1 +1,1 @@
-{"version":3,"file":"index.js","sourceRoot":"","sources":["../index.ts"],"names":[],"mappings":"AAKA,cAAc,aAAa,CAAC","sourcesContent":["/**\r\n * @module\r\n * @description\r\n * Entry point for all public APIs of the data table package.\r\n */\r\nexport * from './src/index';"]}
+{"version":3,"file":"index.js","sourceRoot":"","sources":["../index.ts"],"names":[],"mappings":"AAKA,cAAc,aAAa,CAAC","sourcesContent":["/**\n * @module\n * @description\n * Entry point for all public APIs of the data table package.\n */\nexport * from './src/Index';\n\n"]}

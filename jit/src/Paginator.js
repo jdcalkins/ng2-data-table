@@ -12,12 +12,10 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
 };
 import { Component, Input, Optional } from "@angular/core";
 import { DataTable } from "./DataTable";
-import { StateManager } from "./StateManager";
 var Paginator = (function () {
-    function Paginator(injectMfTable, stateManager) {
+    function Paginator(injectMfTable) {
         var _this = this;
         this.injectMfTable = injectMfTable;
-        this.stateManager = stateManager;
         this.dataLength = 0;
         this.onPageChangeSubscriber = function (event) {
             _this.activePage = event.activePage;
@@ -36,26 +34,18 @@ var Paginator = (function () {
     };
     Paginator.prototype.setRowsOnPage = function (rowsOnPage) {
         this.mfTable.setPage(this.activePage, rowsOnPage);
-        if (this.saveRowsOnPage) {
-            this.stateManager.setPagination(rowsOnPage.toString());
-        }
     };
     __decorate([
         Input("mfTable"),
         __metadata("design:type", DataTable)
     ], Paginator.prototype, "inputMfTable", void 0);
-    __decorate([
-        Input("saveRowsOnPage"),
-        __metadata("design:type", Boolean)
-    ], Paginator.prototype, "saveRowsOnPage", void 0);
     Paginator = __decorate([
         Component({
             selector: "mfPaginator",
             template: "<ng-content></ng-content>"
         }),
         __param(0, Optional()),
-        __metadata("design:paramtypes", [DataTable,
-            StateManager])
+        __metadata("design:paramtypes", [DataTable])
     ], Paginator);
     return Paginator;
 }());

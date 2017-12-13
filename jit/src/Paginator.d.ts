@@ -1,17 +1,14 @@
 import { SimpleChange, OnChanges } from "@angular/core";
 import { DataTable } from "./DataTable";
-import { StateManager } from "./StateManager";
 export declare class Paginator implements OnChanges {
     private injectMfTable;
-    private stateManager;
     inputMfTable: DataTable;
-    saveRowsOnPage: boolean;
     private mfTable;
     activePage: number;
     rowsOnPage: number;
     dataLength: number;
     lastPage: number;
-    constructor(injectMfTable: DataTable, stateManager: StateManager);
+    constructor(injectMfTable: DataTable);
     ngOnChanges(changes: {
         [key: string]: SimpleChange;
     }): any;

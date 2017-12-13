@@ -3,7 +3,6 @@ import { DataTable } from "./DataTable";
 export declare class BootstrapPaginator implements OnChanges {
     rowsOnPageSet: never[];
     mfTable: DataTable;
-    savePagination: boolean;
-    minRowsOnPage: number;
+    minRowsOnPage: any;
     ngOnChanges(changes: any): any;
 }

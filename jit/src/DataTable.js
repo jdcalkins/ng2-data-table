@@ -66,6 +66,9 @@ var DataTable = (function () {
     DataTable.prototype.setPage = function (activePage, rowsOnPage) {
         if (this.rowsOnPage !== rowsOnPage || this.activePage !== activePage) {
             this.activePage = this.activePage !== activePage ? activePage : this.calculateNewActivePage(this.rowsOnPage, rowsOnPage);
+            if (this.saveRowsOnPage && (this.rowsOnPage != rowsOnPage)) {
+                this.stateManager.setPagination(rowsOnPage.toString());
+            }
             this.rowsOnPage = rowsOnPage;
             this.mustRecalculateData = true;
             this.onPageChange.emit({ activePage: this.activePage, rowsOnPage: this.rowsOnPage, dataLength: this.inputData.length });
@@ -79,7 +82,8 @@ var DataTable = (function () {
     DataTable.prototype.ngOnInit = function () {
         this.inputDataLength = this.inputData.length;
         if (this.saveRowsOnPage) {
-            this.rowsOnPage = this.stateManager.getPagination();
+            var rowsOnPage = this.stateManager.getPagination(this.rowsOnPage);
+            this.setPage(1, rowsOnPage);
         }
     };
     DataTable.prototype.ngOnChanges = function (changes) {
