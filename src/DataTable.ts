@@ -1,5 +1,6 @@
 import { Directive, Input, Output, EventEmitter, SimpleChange, DoCheck, OnInit, OnChanges } from "@angular/core";
 import * as _ from "lodash";
+import { StateManager } from "./StateManager";
 
 export interface SortEvent {
     sortBy: string;
@@ -33,6 +34,7 @@ export class DataTable implements OnInit, DoCheck, OnChanges {
     private sortOrder = "asc";
 
     @Input("mfRowsOnPage") public rowsOnPage = 1000;
+    @Input("mfSaveRowsOnPage") public saveRowsOnPage = false;
     @Input("mfActivePage") public activePage = 1;
 
     @Output("mfSelectedEntities") public selectedEntitiesEmitter = new EventEmitter();
@@ -46,6 +48,8 @@ export class DataTable implements OnInit, DoCheck, OnChanges {
     public onSortChange = new EventEmitter<SortEvent>();
     public onPageChange = new EventEmitter<PageEvent>();
     public onSelectChange = new EventEmitter<SelectEvent>();
+
+    constructor(private stateManager: StateManager) { }
 
     public addRemoveSelectedEntity($event: any) {
         this.onSelectChange.emit({});
@@ -93,6 +97,9 @@ export class DataTable implements OnInit, DoCheck, OnChanges {
     public setPage(activePage: number, rowsOnPage: number): void {
         if (this.rowsOnPage !== rowsOnPage || this.activePage !== activePage) {
             this.activePage = this.activePage !== activePage ? activePage : this.calculateNewActivePage(this.rowsOnPage, rowsOnPage);
+            if (this.saveRowsOnPage && (this.rowsOnPage != rowsOnPage)) {
+                this.stateManager.setPagination(rowsOnPage.toString());
+            }            
             this.rowsOnPage = rowsOnPage;
             this.mustRecalculateData = true;
             this.onPageChange.emit({ activePage: this.activePage, rowsOnPage: this.rowsOnPage, dataLength: this.inputData.length });
@@ -107,6 +114,10 @@ export class DataTable implements OnInit, DoCheck, OnChanges {
 
     public ngOnInit() {
         this.inputDataLength = this.inputData.length;
+        if (this.saveRowsOnPage) {
+            let rowsOnPage = this.stateManager.getPagination(this.rowsOnPage);
+            this.setPage(1, rowsOnPage);
+        }
     }
 
     public ngOnChanges(changes: { [key: string]: SimpleChange }): any {

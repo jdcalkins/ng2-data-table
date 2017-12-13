@@ -16,8 +16,7 @@ export class Paginator implements OnChanges {
     public dataLength: number = 0;
     public lastPage: number;
 
-    public constructor(@Optional() private injectMfTable: DataTable) {
-    }
+    public constructor(@Optional() private injectMfTable: DataTable) { }
 
     public ngOnChanges(changes: {[key: string]: SimpleChange}): any {
         this.mfTable = this.inputMfTable || this.injectMfTable;
