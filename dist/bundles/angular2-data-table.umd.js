@@ -14,13 +14,13 @@ var StateManager = (function () {
     function StateManager() {
         this._locStorVar = 'ng2-data-table-pagination';
     }
-    StateManager.prototype.getPagination = function () {
+    StateManager.prototype.getPagination = function (rowsOnPage) {
         var pagePref = window.localStorage.getItem(this._locStorVar);
         if (pagePref) {
             return parseInt(pagePref);
         }
         else {
-            return 1000;
+            return rowsOnPage;
         }
     };
     StateManager.prototype.setPagination = function (pagePref) {
@@ -113,7 +113,8 @@ var DataTable = (function () {
     DataTable.prototype.ngOnInit = function () {
         this.inputDataLength = this.inputData.length;
         if (this.saveRowsOnPage) {
-            this.rowsOnPage = this.stateManager.getPagination();
+            this.rowsOnPage = this.stateManager.getPagination(this.rowsOnPage);
+            this.setPage(1, this.rowsOnPage);
         }
     };
     DataTable.prototype.ngOnChanges = function (changes) {

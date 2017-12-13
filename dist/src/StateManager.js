@@ -9,13 +9,13 @@ var StateManager = (function () {
     function StateManager() {
         this._locStorVar = 'ng2-data-table-pagination';
     }
-    StateManager.prototype.getPagination = function () {
+    StateManager.prototype.getPagination = function (rowsOnPage) {
         var pagePref = window.localStorage.getItem(this._locStorVar);
         if (pagePref) {
             return parseInt(pagePref);
         }
         else {
-            return 1000;
+            return rowsOnPage;
         }
     };
     StateManager.prototype.setPagination = function (pagePref) {
