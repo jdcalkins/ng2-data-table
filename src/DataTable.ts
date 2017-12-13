@@ -11,7 +11,6 @@ export interface PageEvent {
     activePage: number;
     rowsOnPage: number;
     dataLength: number;
-    saveRowsOnPage: boolean;
 }
 
 export interface DataEvent {
@@ -92,15 +91,18 @@ export class DataTable implements OnInit, DoCheck, OnChanges {
     }
 
     public getPage(): PageEvent {
-        return { activePage: this.activePage, rowsOnPage: this.rowsOnPage, saveRowsOnPage: this.saveRowsOnPage, dataLength: this.inputData.length };
+        return { activePage: this.activePage, rowsOnPage: this.rowsOnPage, dataLength: this.inputData.length };
     }
 
     public setPage(activePage: number, rowsOnPage: number): void {
         if (this.rowsOnPage !== rowsOnPage || this.activePage !== activePage) {
             this.activePage = this.activePage !== activePage ? activePage : this.calculateNewActivePage(this.rowsOnPage, rowsOnPage);
+            if (this.saveRowsOnPage && (this.rowsOnPage != rowsOnPage)) {
+                this.stateManager.setPagination(rowsOnPage.toString());
+            }            
             this.rowsOnPage = rowsOnPage;
             this.mustRecalculateData = true;
-            this.onPageChange.emit({ activePage: this.activePage, rowsOnPage: this.rowsOnPage, saveRowsOnPage: this.saveRowsOnPage, dataLength: this.inputData.length });
+            this.onPageChange.emit({ activePage: this.activePage, rowsOnPage: this.rowsOnPage, dataLength: this.inputData.length });
         }
     }
 
@@ -140,7 +142,6 @@ export class DataTable implements OnInit, DoCheck, OnChanges {
             this.onPageChange.emit({
                 activePage: this.activePage,
                 rowsOnPage: this.rowsOnPage,
-                saveRowsOnPage: this.saveRowsOnPage,
                 dataLength: this.inputData.length
             });
             this.onDataChange.emit({

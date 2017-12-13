@@ -8,7 +8,6 @@ export interface PageEvent {
     activePage: number;
     rowsOnPage: number;
     dataLength: number;
-    saveRowsOnPage: boolean;
 }
 export interface DataEvent {
     length: number;

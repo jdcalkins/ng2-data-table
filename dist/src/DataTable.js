@@ -61,14 +61,17 @@ var DataTable = (function () {
         }
     };
     DataTable.prototype.getPage = function () {
-        return { activePage: this.activePage, rowsOnPage: this.rowsOnPage, saveRowsOnPage: this.saveRowsOnPage, dataLength: this.inputData.length };
+        return { activePage: this.activePage, rowsOnPage: this.rowsOnPage, dataLength: this.inputData.length };
     };
     DataTable.prototype.setPage = function (activePage, rowsOnPage) {
         if (this.rowsOnPage !== rowsOnPage || this.activePage !== activePage) {
             this.activePage = this.activePage !== activePage ? activePage : this.calculateNewActivePage(this.rowsOnPage, rowsOnPage);
+            if (this.saveRowsOnPage && (this.rowsOnPage != rowsOnPage)) {
+                this.stateManager.setPagination(rowsOnPage.toString());
+            }
             this.rowsOnPage = rowsOnPage;
             this.mustRecalculateData = true;
-            this.onPageChange.emit({ activePage: this.activePage, rowsOnPage: this.rowsOnPage, saveRowsOnPage: this.saveRowsOnPage, dataLength: this.inputData.length });
+            this.onPageChange.emit({ activePage: this.activePage, rowsOnPage: this.rowsOnPage, dataLength: this.inputData.length });
         }
     };
     DataTable.prototype.calculateNewActivePage = function (previousRowsOnPage, currentRowsOnPage) {
@@ -103,7 +106,6 @@ var DataTable = (function () {
             this.onPageChange.emit({
                 activePage: this.activePage,
                 rowsOnPage: this.rowsOnPage,
-                saveRowsOnPage: this.saveRowsOnPage,
                 dataLength: this.inputData.length
             });
             this.onDataChange.emit({

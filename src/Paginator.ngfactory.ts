@@ -15,20 +15,17 @@ import * as import6 from '@angular/core/src/linker/view_type';
 import * as import7 from '@angular/core/src/change_detection/constants';
 import * as import8 from '@angular/core/src/linker/component_factory';
 import * as import9 from './DataTable';
-import * as import10 from './StateManager';
 export class Wrapper_Paginator {
   /*private*/ _eventHandler:Function;
   context:import0.Paginator;
   /*private*/ _changed:boolean;
   /*private*/ _changes:{[key: string]:any};
   /*private*/ _expr_0:any;
-  /*private*/ _expr_1:any;
-  constructor(p0:any,p1:any) {
+  constructor(p0:any) {
     this._changed = false;
     this._changes = {};
-    this.context = new import0.Paginator(p0,p1);
+    this.context = new import0.Paginator(p0);
     this._expr_0 = import1.UNINITIALIZED;
-    this._expr_1 = import1.UNINITIALIZED;
   }
   ngOnDetach(view:import2.AppView<any>,componentView:import2.AppView<any>,el:any):void {
   }
@@ -40,14 +37,6 @@ export class Wrapper_Paginator {
       this.context.inputMfTable = currValue;
       this._changes['inputMfTable'] = new import1.SimpleChange(this._expr_0,currValue);
       this._expr_0 = currValue;
-    }
-  }
-  check_saveRowsOnPage(currValue:any,throwOnChange:boolean,forceUpdate:boolean):void {
-    if ((forceUpdate || import3.checkBinding(throwOnChange,this._expr_1,currValue))) {
-      this._changed = true;
-      this.context.saveRowsOnPage = currValue;
-      this._changes['saveRowsOnPage'] = new import1.SimpleChange(this._expr_1,currValue);
-      this._expr_1 = currValue;
     }
   }
   ngDoCheck(view:import2.AppView<any>,el:any,throwOnChange:boolean):boolean {
@@ -80,7 +69,7 @@ class View_Paginator_Host0 extends import2.AppView<any> {
   createInternal(rootSelector:string):import8.ComponentRef<any> {
     this._el_0 = import3.selectOrCreateRenderHostElement(this.renderer,'mfPaginator',import3.EMPTY_INLINE_ARRAY,rootSelector,(null as any));
     this.compView_0 = new View_Paginator0(this.viewUtils,this,0,this._el_0);
-    this._Paginator_0_3 = new Wrapper_Paginator(this.injectorGet(import9.DataTable,this.parentIndex,(null as any)),this.injectorGet(import10.StateManager,this.parentIndex));
+    this._Paginator_0_3 = new Wrapper_Paginator(this.injectorGet(import9.DataTable,this.parentIndex,(null as any)));
     this.compView_0.create(this._Paginator_0_3.context);
     this.init(this._el_0,((<any>this.renderer).directRenderer? (null as any): [this._el_0]),(null as any));
     return new import8.ComponentRef_<any>(0,this,this._el_0,this._Paginator_0_3.context);
