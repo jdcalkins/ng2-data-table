@@ -10,8 +10,9 @@ import { StateManager } from "./StateManager";
 
 @NgModule({
     imports: [CommonModule],
-    declarations: [BootstrapPaginator, DataTable, DefaultSorter, Paginator, RowSelector, RowSelectorHead, StateManager],
-    exports: [BootstrapPaginator, DataTable, DefaultSorter, Paginator, RowSelector, RowSelectorHead, StateManager]
+    providers: [StateManager],
+    declarations: [BootstrapPaginator, DataTable, DefaultSorter, Paginator, RowSelector, RowSelectorHead],
+    exports: [BootstrapPaginator, DataTable, DefaultSorter, Paginator, RowSelector, RowSelectorHead]
 })
 export class DataTableModule {
 }

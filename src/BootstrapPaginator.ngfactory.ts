@@ -24,6 +24,7 @@ import * as import15 from '@angular/common/src/directives/ng_for';
 import * as import16 from './Paginator';
 import * as import17 from './Paginator.ngfactory';
 import * as import18 from './DataTable';
+import * as import19 from './StateManager';
 export class Wrapper_BootstrapPaginator {
   /*private*/ _eventHandler:Function;
   context:import0.BootstrapPaginator;
@@ -31,12 +32,14 @@ export class Wrapper_BootstrapPaginator {
   /*private*/ _changes:{[key: string]:any};
   /*private*/ _expr_0:any;
   /*private*/ _expr_1:any;
+  /*private*/ _expr_2:any;
   constructor() {
     this._changed = false;
     this._changes = {};
     this.context = new import0.BootstrapPaginator();
     this._expr_0 = import1.UNINITIALIZED;
     this._expr_1 = import1.UNINITIALIZED;
+    this._expr_2 = import1.UNINITIALIZED;
   }
   ngOnDetach(view:import2.AppView<any>,componentView:import2.AppView<any>,el:any):void {
   }
@@ -56,6 +59,14 @@ export class Wrapper_BootstrapPaginator {
       this.context.mfTable = currValue;
       this._changes['mfTable'] = new import1.SimpleChange(this._expr_1,currValue);
       this._expr_1 = currValue;
+    }
+  }
+  check_savePagination(currValue:any,throwOnChange:boolean,forceUpdate:boolean):void {
+    if ((forceUpdate || import3.checkBinding(throwOnChange,this._expr_2,currValue))) {
+      this._changed = true;
+      this.context.savePagination = currValue;
+      this._changes['savePagination'] = new import1.SimpleChange(this._expr_2,currValue);
+      this._expr_2 = currValue;
     }
   }
   ngDoCheck(view:import2.AppView<any>,el:any,throwOnChange:boolean):boolean {
@@ -914,7 +925,7 @@ export class View_BootstrapPaginator0 extends import2.AppView<import0.BootstrapP
     this._text_0 = this.renderer.createText(parentRenderNode,'\n    ',(null as any));
     this._el_1 = import3.createRenderElement(this.renderer,parentRenderNode,'mfPaginator',import3.EMPTY_INLINE_ARRAY,(null as any));
     this.compView_1 = new import17.View_Paginator0(this.viewUtils,this,1,this._el_1);
-    this._Paginator_1_3 = new import17.Wrapper_Paginator(this.parentView.injectorGet(import18.DataTable,this.parentIndex,(null as any)));
+    this._Paginator_1_3 = new import17.Wrapper_Paginator(this.parentView.injectorGet(import18.DataTable,this.parentIndex,(null as any)),this.parentView.injectorGet(import19.StateManager,this.parentIndex));
     this._text_2 = this.renderer.createText((null as any),'\n        ',(null as any));
     this._anchor_3 = this.renderer.createTemplateAnchor((null as any),(null as any));
     this._vc_3 = new import9.ViewContainer(3,1,this,this._anchor_3);

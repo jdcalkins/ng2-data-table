@@ -1,5 +1,5 @@
 export default {
-  entry: 'dist/src/index.js',
+  entry: 'dist/src/Index.js',
   dest: 'dist/bundles/angular2-data-table.umd.js',
   sourceMap: false,
   format: 'umd',

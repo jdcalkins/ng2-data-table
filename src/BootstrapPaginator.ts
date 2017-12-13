@@ -54,7 +54,7 @@ export class BootstrapPaginator implements OnChanges {
     @Input("mfTable") mfTable: DataTable;
     @Input('savePagination') savePagination: boolean; 
 
-    minRowsOnPage = 0;
+    minRowsOnPage: any = 0;
 
     ngOnChanges(changes: any): any {
         if (changes.rowsOnPageSet) {

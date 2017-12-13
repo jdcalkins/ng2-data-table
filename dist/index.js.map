@@ -1,0 +1,1 @@
+{"version":3,"file":"index.js","sourceRoot":"","sources":["../index.ts"],"names":[],"mappings":"AAKA,cAAc,aAAa,CAAC","sourcesContent":["/**\n * @module\n * @description\n * Entry point for all public APIs of the data table package.\n */\nexport * from './src/Index';\n\n\ninterface DecoratorInvocation {\n  type: Function;\n  args?: any[];\n}\n"]}
