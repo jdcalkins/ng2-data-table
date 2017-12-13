@@ -17,14 +17,16 @@ export class Wrapper_DataTable {
   /*private*/ _expr_0:any;
   /*private*/ _expr_1:any;
   /*private*/ _expr_2:any;
+  /*private*/ _expr_3:any;
   subscription0:any;
-  constructor() {
+  constructor(p0:any) {
     this._changed = false;
     this._changes = {};
-    this.context = new import0.DataTable();
+    this.context = new import0.DataTable(p0);
     this._expr_0 = import1.UNINITIALIZED;
     this._expr_1 = import1.UNINITIALIZED;
     this._expr_2 = import1.UNINITIALIZED;
+    this._expr_3 = import1.UNINITIALIZED;
   }
   ngOnDetach(view:import2.AppView<any>,componentView:import2.AppView<any>,el:any):void {
   }
@@ -47,12 +49,20 @@ export class Wrapper_DataTable {
       this._expr_1 = currValue;
     }
   }
-  check_activePage(currValue:any,throwOnChange:boolean,forceUpdate:boolean):void {
+  check_saveRowsOnPage(currValue:any,throwOnChange:boolean,forceUpdate:boolean):void {
     if ((forceUpdate || import3.checkBinding(throwOnChange,this._expr_2,currValue))) {
       this._changed = true;
-      this.context.activePage = currValue;
-      this._changes['activePage'] = new import1.SimpleChange(this._expr_2,currValue);
+      this.context.saveRowsOnPage = currValue;
+      this._changes['saveRowsOnPage'] = new import1.SimpleChange(this._expr_2,currValue);
       this._expr_2 = currValue;
+    }
+  }
+  check_activePage(currValue:any,throwOnChange:boolean,forceUpdate:boolean):void {
+    if ((forceUpdate || import3.checkBinding(throwOnChange,this._expr_3,currValue))) {
+      this._changed = true;
+      this.context.activePage = currValue;
+      this._changes['activePage'] = new import1.SimpleChange(this._expr_3,currValue);
+      this._expr_3 = currValue;
     }
   }
   ngDoCheck(view:import2.AppView<any>,el:any,throwOnChange:boolean):boolean {

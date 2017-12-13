@@ -13,7 +13,11 @@
         <div class="panel panel-default">
             <div class="panel-heading">User information</div>
             <div class="table-responsive">
-                <table class="table table-striped" [mfData]="data" #mf="mfDataTable" [mfRowsOnPage]="10" (mfSelectedEntities)="setSelectedEntities($event)">
+                <table class="table table-striped" #mf="mfDataTable" 
+                        [mfData]="data" 
+                        [mfRowsOnPage]="10"
+                        [mfSaveRowsOnPage]="true"
+                        (mfSelectedEntities)="setSelectedEntities($event)">
                     <thead>
                         <tr>
                             <th style="width: 5%">
