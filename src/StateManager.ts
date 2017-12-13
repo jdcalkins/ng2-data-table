@@ -4,13 +4,13 @@ import { Injectable } from '@angular/core';
 export class StateManager {
     private _locStorVar: string = 'ng2-data-table-pagination';
 
-    getPagination() : number {
+    getPagination(rowsOnPage: number) : number {
         let pagePref = window.localStorage.getItem(this._locStorVar);
         if (pagePref) {
             return parseInt(pagePref);
         }
         else {
-            return 1000;
+            return rowsOnPage;
         }
     }
 

@@ -115,7 +115,8 @@ export class DataTable implements OnInit, DoCheck, OnChanges {
     public ngOnInit() {
         this.inputDataLength = this.inputData.length;
         if (this.saveRowsOnPage) {
-            this.rowsOnPage = this.stateManager.getPagination();
+            this.rowsOnPage = this.stateManager.getPagination(this.rowsOnPage);
+            this.setPage(1, this.rowsOnPage);
         }
     }
 
