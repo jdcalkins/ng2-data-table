@@ -1,9 +1,16 @@
-npm-debug.log
-node_modules
-.idea
-*.iml
-/coverage/
+# files
+package-lock.json
 .DS_Store
 .vscode
 *.ngsummary.json
-/transpiled/
+*.ngfactory.ts
+npm-debug.log
+.idea
+*.iml
+
+#folders
+coverage/
+transpiled/
+dist/
+jit/
+node_modules/
