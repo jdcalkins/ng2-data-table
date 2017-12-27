@@ -30,7 +30,7 @@
                 main: './main.js',
                 defaultExtension: 'js'
             },
-            rxjs: {defaultExtension: 'js'},
+            rxjs: {defaultExtension: 'js'}
         }
     });
-})(this);
+}(this));

@@ -6,12 +6,22 @@ import { DataTable, SortEvent } from "./DataTable";
     template: `
         <a style="cursor: pointer" (click)="sort()" class="text-nowrap">
             <ng-content></ng-content>
-            <span *ngIf="isSortedByMeAsc" class="glyphicon glyphicon-triangle-top" aria-hidden="true"></span>
-            <span *ngIf="isSortedByMeDesc" class="glyphicon glyphicon-triangle-bottom" aria-hidden="true"></span>
+            <span *ngIf="!showSortableArrows">
+                <span *ngIf="isSortedByMeAsc" class="glyphicon glyphicon-triangle-top" aria-hidden="true"></span>
+                <span *ngIf="isSortedByMeDesc" class="glyphicon glyphicon-triangle-bottom" aria-hidden="true"></span>
+            </span>
+            <span *ngIf="showSortableArrows">
+                <span *ngIf="isSortedByMeAsc" class="fa fa-fw fa-sort fa-sort-asc" aria-hidden="true"></span>
+                <span *ngIf="isSortedByMeDesc" class="fa fa-fw fa-sort fa-sort-desc" aria-hidden="true"></span>
+                <span *ngIf="!isSortedByMeDesc && !isSortedByMeAsc" class="fa fa-fw fa-sort" aria-hidden="true"></span>
+            </span>
         </a>`
 })
 export class DefaultSorter {
     @Input("by") sortBy: string;
+
+    // Optional inputs
+    @Input("mfShowSortableArrows") public showSortableArrows = false;
 
     isSortedByMeAsc: boolean = false;
     isSortedByMeDesc: boolean = false;

@@ -8,6 +8,16 @@ npm install --save ng2-data-table
 
 ## Usage example
 
+An app reference to font-awesome is required if you set 'mfDefaultSorter' component input option 'mfShowSortableArrows' to true.
+```html
+<html>
+    <head>
+        <link rel="stylesheet" href="/node_modules/font-awesome/css/font-awesome.min.css">
+    </head>
+</html>
+
+```
+
 app.module.ts
 ```typescript
 import { NgModule } fro m "@angular/core";
@@ -55,7 +65,7 @@ app.component.html
                 <mfRowSelectorHead></mfRowSelectorHead>
             </th>
             <th style="width: 20%">
-                <mfDefaultSorter by="name">Name</mfDefaultSorter>
+                <mfDefaultSorter by="name" [mfShowSortableArrows]="true">Name</mfDefaultSorter>
             </th>
             <th style="width: 50%">
                 <mfDefaultSorter by="email">Email</mfDefaultSorter>
@@ -106,6 +116,7 @@ app.component.html
  - selector: `mfDefaultSorter`
  - inputs
    - `by: any` - specify how to sort data (argument for lodash function [_.sortBy ](https://lodash.com/docs#sortBy))
+   - `mfShowSortableArrows: boolean` - set to 'true' if the column heading should show sort arrows when sortable but not yet sorted. Default is false. 
 
 ### `mfBootstrapPaginator` component
 Displays buttons for changing current page and number of displayed rows using bootstrap template (css for bootstrap is required). If array length is smaller than current displayed rows on page then it doesn't show button for changing page. If array length is smaller than min value rowsOnPage then it doesn't show any buttons.
