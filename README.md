@@ -117,6 +117,8 @@ app.component.html
  - inputs
    - `by: any` - specify how to sort data (argument for lodash function [_.sortBy ](https://lodash.com/docs#sortBy))
    - `mfShowSortableArrows: boolean` - set to 'true' if the column heading should show sort arrows when sortable but not yet sorted. Default is false. 
+   - `mfSortArrowStyleClass: string` - space delimited list of class names to add to the sort arrows. 
+   - `mfStyleClass: string` - space delimited list of class names to add to the anchor element. 
 
 ### `mfBootstrapPaginator` component
 Displays buttons for changing current page and number of displayed rows using bootstrap template (css for bootstrap is required). If array length is smaller than current displayed rows on page then it doesn't show button for changing page. If array length is smaller than min value rowsOnPage then it doesn't show any buttons.
