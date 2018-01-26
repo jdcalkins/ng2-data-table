@@ -104,7 +104,7 @@ app.component.html
  - selector: `table[mfData]`
  - exportAs: `mfDataTable`
  - inputs
-   - `mfData: any[]` - array of data to display on table
+   - `mfData: any[]` - array of data to display on table. To prevent an item from being selected when clicking the Select All checkbox, add property 'mfIsSelectable: false' to the item.   
    - `mfRowsOnPage: number` - number of rows should be displayed on page (default: 1000)
    - `mfActivePage: number` - page number should be displayed on init (default: 1)
    - `mfSaveRowsOnPage: boolean` - pagination should be saved in local storage (default: false)

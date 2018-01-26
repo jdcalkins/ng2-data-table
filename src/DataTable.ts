@@ -63,7 +63,10 @@ export class DataTable implements OnInit, DoCheck, OnChanges {
 
     public selectAllRows() {
         this.inputData.forEach((data) => {
-            data.__isSelected__ = true;
+            if (data.hasOwnProperty('mfIsSelectable') == false
+                || data.hasOwnProperty('mfIsSelectable') && data.mfIsSelectable) {
+                data.__isSelected__ = true;
+            }
         })
         this.updateSelectedEntities();
         this.selectedEntitiesEmitter.emit(this.selectedEntities);

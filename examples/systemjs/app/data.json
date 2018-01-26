@@ -4,14 +4,16 @@
     "email": "tellus.eu.augue@arcu.com",
     "regDate": "2016-01-09T14:48:34-08:00",
     "city": "Paglieta",
-    "age": 25
+    "age": 25,
+    "isSelectable": false
   },
   {
     "name": "wai",
     "email": "stellus.eu.augue@arcu.com",
     "regDate": "2016-01-09T14:48:34-08:00",
     "city": "Paglieta",
-    "age": 25
+    "age": 25,
+    "isSelectable": true
   },
   {
     "name": "Whitney",
