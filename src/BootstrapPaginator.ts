@@ -8,7 +8,10 @@ import * as _ from "lodash";
     <mfPaginator #p [mfTable]="mfTable">
         <nav class="pagination" *ngIf="p.dataLength > p.rowsOnPage">
             <li [class.disabled]="p.activePage <= 1" (click)="p.setPage(1)">
-                <a style="cursor: pointer">&laquo;</a>
+                <a style="cursor: pointer"><span class="glyphicon glyphicon-triangle-left"></span></a>
+            </li>
+            <li [class.disabled]="p.activePage <= 1" (click)="p.setPage(p.activePage - 1)">
+                <a style="cursor: pointer"><span class="glyphicon glyphicon-menu-left"></span></a>
             </li>
             <li *ngIf="p.activePage > 4 && p.activePage + 1 > p.lastPage" (click)="p.setPage(p.activePage - 4)">
                 <a style="cursor: pointer">{{p.activePage-4}}</a>
@@ -37,8 +40,11 @@ import * as _ from "lodash";
             <li *ngIf="p.activePage + 4 <= p.lastPage && p.activePage < 2" (click)="p.setPage(p.activePage + 4)">
                 <a style="cursor: pointer">{{p.activePage+4}}</a>
             </li>
+            <li [class.disabled]="p.activePage >= p.lastPage" (click)="p.setPage(p.activePage + 1)">
+                <a style="cursor: pointer"><span class="glyphicon glyphicon-menu-right"></span></a>
+            </li>            
             <li [class.disabled]="p.activePage >= p.lastPage" (click)="p.setPage(p.lastPage)">
-                <a style="cursor: pointer">&raquo;</a>
+                <a style="cursor: pointer"><span class="glyphicon glyphicon-triangle-right"></span></a>
             </li>
         </nav>
         <nav class="pagination pull-right" *ngIf="p.dataLength > minRowsOnPage">
