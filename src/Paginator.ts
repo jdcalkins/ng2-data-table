@@ -25,7 +25,9 @@ export class Paginator implements OnChanges {
     }
 
     public setPage(pageNumber: number): void {
-        this.mfTable.setPage(pageNumber, this.rowsOnPage);
+        if (pageNumber > 0 && pageNumber <= this.lastPage) {
+            this.mfTable.setPage(pageNumber, this.rowsOnPage);
+        }
     }
 
     public setRowsOnPage(rowsOnPage: number): void {
